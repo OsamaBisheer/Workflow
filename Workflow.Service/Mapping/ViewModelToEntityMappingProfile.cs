@@ -12,8 +12,8 @@ namespace Workflow.Service.Mappings
         {
             CreateMap<WorkflowCreateVM, Workflow.Domain.Entities.Workflow>().AfterMap((vm, entity) => entity.SetCreated(entity.CreatedByUserId, DateTime.UtcNow));
             CreateMap<StepCreateVM, Step>().AfterMap((vm, entity) => entity.SetCreated(entity.CreatedByUserId, DateTime.UtcNow));
-            //CreateMap<WorkflowUpdateVM, Workflow.Domain.Entities.Workflow>().AfterMap((vm, entity) => entity.SetLastUpdated(entity.LastUpdatedByUserId, DateTime.UtcNow));
-            //CreateMap<StepUpdateVM, Step>().AfterMap((vm, entity) => entity.SetLastUpdated(entity.LastUpdatedByUserId, DateTime.UtcNow));
+            CreateMap<WorkflowUpdateVM, Workflow.Domain.Entities.Workflow>().AfterMap((vm, entity) => entity.SetLastUpdated(entity.LastUpdatedByUserId, DateTime.UtcNow));
+            CreateMap<StepUpdateVM, Step>().AfterMap((vm, entity) => entity.SetLastUpdated(entity.LastUpdatedByUserId, DateTime.UtcNow));
 
             CreateMap<ProcessStartVM, Process>()
                 .ForMember(Dest => Dest.CurrentInitiatorId, opt => opt.MapFrom(src => src.NextInitiatorId))

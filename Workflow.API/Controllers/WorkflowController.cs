@@ -78,35 +78,36 @@ namespace Workflow.API
             });
         }
 
-        [HttpPut, Route("update")]
-        public async Task<ActionResult> Update(WorkflowUpdateVM updateVM)
-        {
-            if (updateVM.Steps == null || updateVM.Steps.Count == 0)
-            {
-                var missingStepsErrorMsg = "Model should have one step at least";
-                ModelState.AddModelError("Steps", missingStepsErrorMsg);
-            }
+        //Need Review
+        //[HttpPut, Route("update")]
+        //public async Task<ActionResult> Update(WorkflowUpdateVM updateVM)
+        //{
+        //    if (updateVM.Steps == null || updateVM.Steps.Count == 0)
+        //    {
+        //        var missingStepsErrorMsg = "Model should have one step at least";
+        //        ModelState.AddModelError("Steps", missingStepsErrorMsg);
+        //    }
 
-            if (!ModelState.IsValid)
-            {
-                return GetActionResult(new ResponseModel
-                {
-                    Result = 0,
-                    Code = ResponseCodeEnum.BadRequest,
-                    MessageFL = nameof(ResponseCodeEnum.BadRequest),
-                    MessageSL = nameof(ResponseCodeEnum.BadRequest)
-                });
-            }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return GetActionResult(new ResponseModel
+        //        {
+        //            Result = 0,
+        //            Code = ResponseCodeEnum.BadRequest,
+        //            MessageFL = nameof(ResponseCodeEnum.BadRequest),
+        //            MessageSL = nameof(ResponseCodeEnum.BadRequest)
+        //        });
+        //    }
 
-            (int id, ResponseCodeEnum responseCode) = await workflowService.Update(updateVM);
+        //    (int id, ResponseCodeEnum responseCode) = await workflowService.Update(updateVM);
 
-            return GetActionResult(new ResponseModel
-            {
-                Result = id,
-                Code = responseCode,
-                MessageFL = responseCode == ResponseCodeEnum.Success ? null : responseCode.ToString(),
-                MessageSL = responseCode == ResponseCodeEnum.Success ? null : responseCode.ToString()
-            });
-        }
+        //    return GetActionResult(new ResponseModel
+        //    {
+        //        Result = id,
+        //        Code = responseCode,
+        //        MessageFL = responseCode == ResponseCodeEnum.Success ? null : responseCode.ToString(),
+        //        MessageSL = responseCode == ResponseCodeEnum.Success ? null : responseCode.ToString()
+        //    });
+        //}
     }
 }
